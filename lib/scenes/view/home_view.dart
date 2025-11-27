@@ -6,12 +6,17 @@ import '../view_model/app/app_view_model.dart';
 import '../factory/notes_list_factory.dart';
 import '../../Components/AppBar/custom_app_bar.dart';
 import '../../Components/AppBar/custom_app_bar_view_model.dart';
-import '../../Components/Avatar/user_avatar.dart';
-import '../../Components/Avatar/user_avatar_view_model.dart';
 import '../../Components/NotificationInput/notification_input.dart';
 import '../../Components/NotificationInput/notification_config.dart';
 import '../../Components/Dropdown/custom_dropdown.dart';
 import '../../Components/Dropdown/dropdown_view_model.dart';
+import '../../Components/Banner/custom_banner.dart';
+import '../../Components/Banner/banner_view_model.dart';
+import '../../Components/NavigationCard/navigation_card.dart';
+import '../../shared/spacing.dart';
+import '../../Components/Profile/profile_header.dart';
+import '../../Components/Profile/profile_quick_actions.dart';
+import '../../Components/Profile/profile_personal_data_card.dart';
 
 class HomeView extends StatefulWidget {
   final AppCoordinator coordinator;
@@ -63,26 +68,63 @@ class _ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final name = coordinator.userName ?? 'Usuário';
     final address = coordinator.userAddress ?? 'Endereço não informado';
-    return Padding(
+    return ListView(
       padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 16),
-          UserAvatar.instantiate(
-            viewModel: UserAvatarViewModel(
-              name: name,
-              size: UserAvatarSize.large,
+      children: _sections(context, name, address),
+    );
+  }
+
+  List<Widget> _sections(BuildContext context, String name, String address) {
+    return [
+      _bannerCompleteProfile(),
+      ProfileHeader.instantiate(name: name, address: address, onEdit: () {}),
+      const SizedBox(height: spaceLg),
+      ProfileQuickActions.instantiate(coordinator: coordinator),
+      const SizedBox(height: spaceLg),
+      ProfilePersonalDataCard.instantiate(name: name),
+      const SizedBox(height: spaceLg),
+      _privacyNavigationCard(context),
+    ];
+  }
+
+  Widget _bannerCompleteProfile() {
+    return CustomBanner.instantiate(
+      viewModel: BannerViewModel(
+        title: 'Complete seu perfil',
+        subtitle: 'Adicione mais detalhes para uma experiência personalizada',
+        type: BannerType.info,
+        icon: Icons.person_outline,
+        actionText: 'Editar agora',
+        onActionPressed: () {},
+        showCloseButton: true,
+      ),
+    );
+  }
+
+  Widget _privacyNavigationCard(BuildContext context) {
+    return NavigationCard(
+      title: 'Privacidade e Segurança',
+      description: 'Configure autenticação e privacidade da conta',
+      icon: Icons.lock_outlined,
+      destination: Scaffold(
+        appBar: AppBar(title: const Text('Privacidade e Segurança')),
+        body: ListView(
+          padding: const EdgeInsets.all(spaceMd),
+          children: [
+            SwitchListTile(
+              title: const Text('Autenticação biométrica'),
+              secondary: const Icon(Icons.fingerprint),
+              value: false,
+              onChanged: (_) {},
             ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            name,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          Text(address),
-        ],
+            SwitchListTile(
+              title: const Text('Exibir sugestão de conteúdo'),
+              secondary: const Icon(Icons.recommend_outlined),
+              value: true,
+              onChanged: (_) {},
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -96,37 +138,49 @@ class _SettingsView extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        SwitchListTile(
-          secondary: const Icon(Icons.dark_mode),
-          title: const Text('Tema escuro'),
-          value: Theme.of(context).brightness == Brightness.dark,
-          onChanged: onToggleDark,
-        ),
+        _darkModeSwitch(context),
         const SizedBox(height: 8),
-        NotificationGroup(
-          title: 'Notificações',
-          subtitle: 'Personalize como deseja ser avisado',
-          children: [
-            NotificationConfig.system(title: 'Sistema', initialValue: true),
-            NotificationConfig.activity(title: 'Atividade'),
-            NotificationConfig.marketing(title: 'Marketing'),
-            NotificationConfig.security(title: 'Segurança'),
-          ],
-        ),
+        _notificationsGroup(),
         const SizedBox(height: 16),
-        CustomDropdown.instantiate<String>(
-          viewModel: DropdownViewModel<String>(
-            items: const [
-              DropdownItem(value: 'instant', label: 'Backup instantâneo'),
-              DropdownItem(value: 'daily', label: 'Backup diário'),
-              DropdownItem(value: 'weekly', label: 'Backup semanal'),
-            ],
-            selectedValue: 'daily',
-            placeholder: 'Frequência de backup',
-            prefixIcon: const Icon(Icons.backup_outlined),
-          ),
-        ),
+        _backupDropdown(),
       ],
+    );
+  }
+
+  Widget _darkModeSwitch(BuildContext context) {
+    return SwitchListTile(
+      secondary: const Icon(Icons.dark_mode),
+      title: const Text('Tema escuro'),
+      value: Theme.of(context).brightness == Brightness.dark,
+      onChanged: onToggleDark,
+    );
+  }
+
+  Widget _notificationsGroup() {
+    return NotificationGroup(
+      title: 'Notificações',
+      subtitle: 'Personalize como deseja ser avisado',
+      children: [
+        NotificationConfig.system(title: 'Sistema', initialValue: true),
+        NotificationConfig.activity(title: 'Atividade'),
+        NotificationConfig.marketing(title: 'Marketing'),
+        NotificationConfig.security(title: 'Segurança'),
+      ],
+    );
+  }
+
+  Widget _backupDropdown() {
+    return CustomDropdown.instantiate<String>(
+      viewModel: DropdownViewModel<String>(
+        items: const [
+          DropdownItem(value: 'instant', label: 'Backup instantâneo'),
+          DropdownItem(value: 'daily', label: 'Backup diário'),
+          DropdownItem(value: 'weekly', label: 'Backup semanal'),
+        ],
+        selectedValue: 'daily',
+        placeholder: 'Frequência de backup',
+        prefixIcon: const Icon(Icons.backup_outlined),
+      ),
     );
   }
 }

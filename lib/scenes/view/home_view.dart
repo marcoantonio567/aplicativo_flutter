@@ -17,6 +17,7 @@ import '../../shared/spacing.dart';
 import '../../Components/Profile/profile_header.dart';
 import '../../Components/Profile/profile_quick_actions.dart';
 import '../../Components/Profile/profile_personal_data_card.dart';
+import '../../Components/Loading/loading_overlay.dart';
 
 class HomeView extends StatefulWidget {
   final AppCoordinator coordinator;
@@ -34,23 +35,70 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  int? _lastIndex;
+  bool _showLoading = false;
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<int>(
       valueListenable: widget.viewModel.currentIndex,
       builder: (context, index, _) {
+        if (_lastIndex != index) {
+          _showLoading = true;
+          _lastIndex = index;
+          Future.delayed(const Duration(milliseconds: 310), () {
+            if (mounted) setState(() => _showLoading = false);
+          });
+        }
         final pages = [
-          NotesListFactory.make(coordinator: widget.coordinator),
-          _ProfileView(coordinator: widget.coordinator),
-          _SettingsView(
-            onToggleDark: (value) => widget.appViewModel.toggleDark(value),
+          KeyedSubtree(
+            key: const ValueKey('tab-notes'),
+            child: NotesListFactory.make(coordinator: widget.coordinator),
+          ),
+          KeyedSubtree(
+            key: const ValueKey('tab-profile'),
+            child: _ProfileView(coordinator: widget.coordinator),
+          ),
+          KeyedSubtree(
+            key: const ValueKey('tab-settings'),
+            child: _SettingsView(
+              onToggleDark: (value) => widget.appViewModel.toggleDark(value),
+            ),
           ),
         ];
         return Scaffold(
           appBar: CustomAppBar.instantiate(
             viewModel: const CustomAppBarViewModel(title: 'Meu App'),
           ),
-          body: pages[index],
+          body: Stack(
+            children: [
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 250),
+                switchInCurve: Curves.easeOutCubic,
+                switchOutCurve: Curves.easeInCubic,
+                transitionBuilder: (child, animation) {
+                  final curved = CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.easeOutCubic,
+                  );
+                  final fade = Tween<double>(
+                    begin: 0.0,
+                    end: 1.0,
+                  ).animate(curved);
+                  final slide = Tween<Offset>(
+                    begin: const Offset(0, 0.02),
+                    end: Offset.zero,
+                  ).animate(curved);
+                  return FadeTransition(
+                    opacity: fade,
+                    child: SlideTransition(position: slide, child: child),
+                  );
+                },
+                child: pages[index],
+              ),
+              if (_showLoading)
+                LoadingOverlay.instantiate(size: 32, strokeWidth: 2),
+            ],
+          ),
           bottomNavigationBar: BottomTabBar.instantiate(
             viewModel: widget.viewModel.buildBottomBar(),
             currentIndex: index,

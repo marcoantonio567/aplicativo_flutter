@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../scenes/factory/home_factory.dart';
+import '../../shared/navigation_helper.dart';
 import '../../scenes/factory/notes_list_factory.dart';
 import '../../scenes/factory/note_detail_factory.dart';
 import '../../scenes/view_model/app/app_view_model.dart';
@@ -17,12 +18,9 @@ class AppCoordinator {
     userName = name;
     userAddress = address;
     if (context != null) {
-      Navigator.pushReplacement(
+      NavigationHelper.navigateAndReplace(
         context,
-        MaterialPageRoute(
-          builder: (_) =>
-              HomeFactory.make(coordinator: this, appViewModel: appViewModel!),
-        ),
+        HomeFactory.make(coordinator: this, appViewModel: appViewModel!),
       );
     }
   }
@@ -30,11 +28,9 @@ class AppCoordinator {
   void goToNotes() {
     final context = navigatorKey.currentContext;
     if (context != null) {
-      Navigator.push(
+      NavigationHelper.navigateTo(
         context,
-        MaterialPageRoute(
-          builder: (_) => NotesListFactory.make(coordinator: this),
-        ),
+        NotesListFactory.make(coordinator: this),
       );
     }
   }
@@ -42,12 +38,9 @@ class AppCoordinator {
   Future<String?> goToNoteDetail(String noteId) {
     final context = navigatorKey.currentContext;
     if (context != null) {
-      return Navigator.push<String?>(
+      return NavigationHelper.navigateTo<String?>(
         context,
-        MaterialPageRoute(
-          builder: (_) =>
-              NoteDetailFactory.make(coordinator: this, noteId: noteId),
-        ),
+        NoteDetailFactory.make(coordinator: this, noteId: noteId),
       );
     }
     return Future.value(null);

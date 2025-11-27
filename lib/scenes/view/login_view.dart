@@ -10,6 +10,7 @@ import '../../shared/spacing.dart';
 import '../../shared/colors.dart';
 import '../../Components/AppBar/custom_app_bar.dart';
 import '../../Components/AppBar/custom_app_bar_view_model.dart';
+import '../../Components/Checkbox/custom_checkbox.dart';
 
 class LoginView extends StatefulWidget {
   final LoginViewModel viewModel;
@@ -22,6 +23,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final TextEditingController _userCtrl = TextEditingController();
   final TextEditingController _passCtrl = TextEditingController();
+  bool _rememberMe = false;
 
   @override
   void dispose() {
@@ -60,6 +62,18 @@ class _LoginViewState extends State<LoginView> {
           return null;
         },
       ),
+    );
+  }
+
+  Widget _buildRememberMe() {
+    return CustomCheckbox(
+      value: _rememberMe,
+      label: 'Lembrar senha',
+      onChanged: (v) {
+        setState(() {
+          _rememberMe = v ?? false;
+        });
+      },
     );
   }
 
@@ -126,9 +140,40 @@ class _LoginViewState extends State<LoginView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _buildUsernameField(),
-            const SizedBox(height: spaceSm),
-            _buildPasswordField(),
+            Container(
+              padding: const EdgeInsets.all(spaceMd),
+              decoration: BoxDecoration(
+                color: lightTertiaryBaseColorLight,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: normalSecondaryBaseColorLight, width: 1),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _buildUsernameField(),
+                  const SizedBox(height: spaceSm),
+                  _buildPasswordField(),
+                  const SizedBox(height: spaceSm),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildRememberMe(),
+                      ActionButton.instantiate(
+                        viewModel: ActionButtonViewModel(
+                          size: ActionButtonSize.small,
+                          style: ActionButtonStyle.clear,
+                          text: 'Termos de uso',
+                          rightIcon: Icons.arrow_forward_ios,
+                          onPressed: () {
+                            widget.viewModel.appCoordinator.goToTerms();
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: spaceMd),
             _buildLoginButton(),
             const SizedBox(height: spaceSm),

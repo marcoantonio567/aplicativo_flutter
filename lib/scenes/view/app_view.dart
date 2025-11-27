@@ -9,7 +9,11 @@ import '../../shared/theme.dart';
 class AppView extends StatelessWidget {
   final AppCoordinator coordinator;
   final AppViewModel viewModel;
-  const AppView({super.key, required this.coordinator, required this.viewModel});
+  const AppView({
+    super.key,
+    required this.coordinator,
+    required this.viewModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class AppView extends StatelessWidget {
       valueListenable: viewModel.themeMode,
       builder: (context, mode, _) {
         return MaterialApp(
-          title: 'MVVM Sample',
+          title: 'Projeto App',
           navigatorKey: coordinator.navigatorKey,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,

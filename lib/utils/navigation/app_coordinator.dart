@@ -3,6 +3,7 @@ import '../../scenes/factory/home_factory.dart';
 import '../../shared/navigation_helper.dart';
 import '../../scenes/factory/notes_list_factory.dart';
 import '../../scenes/factory/note_detail_factory.dart';
+import '../../scenes/factory/terms_factory.dart';
 import '../../scenes/view_model/app/app_view_model.dart';
 
 /// Coordenador de navegação.
@@ -31,6 +32,16 @@ class AppCoordinator {
       NavigationHelper.navigateTo(
         context,
         NotesListFactory.make(coordinator: this),
+      );
+    }
+  }
+
+  void goToTerms() {
+    final context = navigatorKey.currentContext;
+    if (context != null) {
+      NavigationHelper.navigateTo(
+        context,
+        TermsFactory.make(coordinator: this),
       );
     }
   }

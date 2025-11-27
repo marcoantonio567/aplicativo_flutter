@@ -49,13 +49,13 @@ class CardStyles {
     }
   }
 
-  static BoxDecoration getDecoration(CardType type, CardSize size) {
+  static BoxDecoration getDecoration(BuildContext context, CardType type, CardSize size) {
     final borderRadius = getBorderRadius(size);
     
     switch (type) {
       case CardType.primary:
         return BoxDecoration(
-          color: lightTertiaryBaseColorLight,
+          color: ThemeColors.surface(context),
           borderRadius: BorderRadius.circular(borderRadius),
         );
       case CardType.secondary:
@@ -82,32 +82,32 @@ class CardStyles {
         );
       case CardType.outlined:
         return BoxDecoration(
-          color: lightTertiaryBaseColorLight,
+          color: ThemeColors.surface(context),
           borderRadius: BorderRadius.circular(borderRadius),
         );
     }
   }
 
-  static TextStyle getTitleStyle(CardSize size) {
+  static TextStyle getTitleStyle(BuildContext context, CardSize size) {
     switch (size) {
       case CardSize.small:
-        return label1Semibold;
+        return label1Semibold.copyWith(color: ThemeColors.primaryText(context));
       case CardSize.medium:
-        return heading5Regular;
+        return heading5Regular.copyWith(color: ThemeColors.primaryText(context));
       case CardSize.large:
-        return heading4Regular;
+        return heading4Regular.copyWith(color: ThemeColors.primaryText(context));
     }
   }
 
-  static TextStyle getSubtitleStyle() {
+  static TextStyle getSubtitleStyle(BuildContext context) {
     return paragraph2Medium.copyWith(
       color: normalSecondaryBrandColor,
     );
   }
 
-  static TextStyle getDescriptionStyle() {
+  static TextStyle getDescriptionStyle(BuildContext context) {
     return paragraph2Medium.copyWith(
-      color: normalSecondaryBaseColorLight,
+      color: ThemeColors.mutedText(context),
     );
   }
 

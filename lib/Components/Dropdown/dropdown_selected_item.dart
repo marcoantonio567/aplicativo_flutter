@@ -27,7 +27,7 @@ class DropdownSelectedItemWidget<T> extends StatelessWidget {
             Container(
               padding: DropdownStyles.iconPadding,
               decoration: BoxDecoration(
-                color: normalSecondaryBrandColor.withValues(alpha: 0.1),
+                color: ThemeColors.brandSecondaryMuted(context),
                 borderRadius: BorderRadius.circular(DropdownStyles.iconBorderRadius),
               ),
               child: prefixIcon!,
@@ -38,7 +38,7 @@ class DropdownSelectedItemWidget<T> extends StatelessWidget {
             Container(
               padding: DropdownStyles.iconPadding,
               decoration: BoxDecoration(
-                color: normalSecondaryBrandColor.withValues(alpha: 0.1),
+                color: ThemeColors.brandSecondaryMuted(context),
                 borderRadius: BorderRadius.circular(DropdownStyles.iconBorderRadius),
               ),
               child: item.icon!,
@@ -50,8 +50,8 @@ class DropdownSelectedItemWidget<T> extends StatelessWidget {
               item.label,
               style: paragraph1Regular.copyWith(
                 color: isEnabled 
-                    ? normalPrimaryBaseColorLight 
-                    : lightSecondaryBaseColorLight,
+                    ? ThemeColors.primaryText(context) 
+                    : ThemeColors.secondaryText(context),
                 fontWeight: FontWeight.w600,
               ),
               overflow: TextOverflow.ellipsis,
@@ -84,7 +84,7 @@ class DropdownHintWidget extends StatelessWidget {
             Container(
               padding: DropdownStyles.iconPadding,
               decoration: BoxDecoration(
-                color: lightSecondaryBrandColor.withValues(alpha: 0.1),
+                color: ThemeColors.brandSecondaryMuted(context),
                 borderRadius: BorderRadius.circular(DropdownStyles.iconBorderRadius),
               ),
               child: prefixIcon!,
@@ -95,7 +95,7 @@ class DropdownHintWidget extends StatelessWidget {
             child: Text(
               placeholder,
               style: paragraph1Regular.copyWith(
-                color: lightSecondaryBaseColorLight,
+                color: ThemeColors.secondaryText(context),
                 fontWeight: FontWeight.w500,
               ),
               overflow: TextOverflow.ellipsis,

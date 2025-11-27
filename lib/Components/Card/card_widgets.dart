@@ -87,7 +87,7 @@ class CardContent extends StatelessWidget {
         if (title != null) 
           Text(
             title!,
-            style: CardStyles.getTitleStyle(size),
+            style: CardStyles.getTitleStyle(context, size),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
@@ -95,7 +95,7 @@ class CardContent extends StatelessWidget {
           const SizedBox(height: spaceXs),
           Text(
             subtitle!,
-            style: CardStyles.getSubtitleStyle(),
+            style: CardStyles.getSubtitleStyle(context),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
@@ -104,7 +104,7 @@ class CardContent extends StatelessWidget {
           const SizedBox(height: spaceXs),
           Text(
             description!,
-            style: CardStyles.getDescriptionStyle(),
+            style: CardStyles.getDescriptionStyle(context),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),

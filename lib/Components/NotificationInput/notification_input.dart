@@ -64,12 +64,12 @@ class _NotificationInputState extends State<NotificationInput> {
     return Container(
       padding: const EdgeInsets.all(spaceMd),
       decoration: BoxDecoration(
-        color: lightTertiaryBaseColorLight,
+        color: ThemeColors.surface(context),
         borderRadius: BorderRadius.circular(radiusMd),
         border: Border.all(
           color: _isEnabled 
             ? _theme.borderColor.withValues(alpha: 0.3)
-            : normalTertiaryBaseColorLight,
+            : ThemeColors.borderNeutral(context),
           width: 1,
         ),
       ),
@@ -118,8 +118,8 @@ class _NotificationInputState extends State<NotificationInput> {
           widget.title,
           style: label1Semibold.copyWith(
             color: widget.enabled 
-              ? normalPrimaryBaseColorLight 
-              : normalSecondaryBaseColorLight,
+              ? ThemeColors.primaryText(context) 
+              : ThemeColors.mutedText(context),
           ),
         ),
         if (widget.subtitle != null) ...[
@@ -127,7 +127,7 @@ class _NotificationInputState extends State<NotificationInput> {
           Text(
             widget.subtitle!,
             style: paragraph2Medium.copyWith(
-              color: normalSecondaryBaseColorLight,
+              color: ThemeColors.mutedText(context),
             ),
           ),
         ],
@@ -141,8 +141,8 @@ class _NotificationInputState extends State<NotificationInput> {
       onChanged: widget.enabled ? _handleSwitchChanged : null,
       activeColor: _theme.primaryColor,
       activeTrackColor: _theme.primaryColor.withValues(alpha: 0.3),
-      inactiveThumbColor: normalSecondaryBaseColorLight,
-      inactiveTrackColor: normalTertiaryBaseColorLight,
+      inactiveThumbColor: ThemeColors.mutedText(context),
+      inactiveTrackColor: ThemeColors.borderNeutral(context),
     );
   }
 
@@ -174,12 +174,12 @@ class _NotificationInputState extends State<NotificationInput> {
                 decoration: BoxDecoration(
                   color: isSelected 
                     ? _theme.primaryColor 
-                    : lightTertiaryBaseColorLight,
+                    : ThemeColors.surface(context),
                   borderRadius: BorderRadius.circular(radiusSm),
                   border: Border.all(
                     color: isSelected 
                       ? _theme.primaryColor 
-                      : normalTertiaryBaseColorLight,
+                      : ThemeColors.borderNeutral(context),
                   ),
                 ),
                 child: Text(
@@ -187,7 +187,7 @@ class _NotificationInputState extends State<NotificationInput> {
                   style: label2Semibold.copyWith(
                     color: isSelected 
                       ? lightTertiaryBaseColorLight 
-                      : normalPrimaryBaseColorLight,
+                      : ThemeColors.primaryText(context),
                   ),
                 ),
               ),

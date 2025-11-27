@@ -29,45 +29,48 @@ class DropdownStyles {
       const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
 
   static Color getBorderColor({
+    required BuildContext context,
     required bool hasError,
     required bool isFocused,
     required bool isHovered,
   }) {
     if (hasError) return normalErrorSystemColor;
     if (isFocused) return normalSecondaryBrandColor;
-    if (isHovered) return lightSecondaryBrandColor;
-    return normalSecondaryBaseColorLight.withValues(alpha: 0.3);
+    if (isHovered) return ThemeColors.brandSecondaryMuted(context);
+    return ThemeColors.mutedText(context).withValues(alpha: 0.3);
   }
 
-  static LinearGradient getContainerGradient({required bool isEnabled}) {
+  static LinearGradient getContainerGradient({required BuildContext context, required bool isEnabled}) {
+    final base = ThemeColors.surface(context);
+    final alt = ThemeColors.surfaceAlt(context);
     if (isEnabled) {
       return LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          lightTertiaryBaseColorLight,
-          lightTertiaryBaseColorLight.withValues(alpha: 0.95),
+          base,
+          base.withValues(alpha: 0.95),
         ],
       );
     } else {
       return LinearGradient(
         colors: [
-          normalTertiaryBaseColorLight,
-          normalTertiaryBaseColorLight.withValues(alpha: 0.8),
+          alt,
+          alt.withValues(alpha: 0.8),
         ],
       );
     }
   }
 
   static List<BoxShadow> getBoxShadow({
+    required BuildContext context,
     required bool isHovered,
     required bool isFocused,
   }) {
     if (isHovered || isFocused) {
       return [
         BoxShadow(
-          color: (isFocused ? normalSecondaryBrandColor : lightSecondaryBrandColor)
-              .withValues(alpha: 0.15),
+          color: ThemeColors.brandSecondaryMuted(context).withValues(alpha: 0.15),
           blurRadius: isFocused ? 12 : 8,
           offset: const Offset(0, 4),
           spreadRadius: isFocused ? 2 : 0,
@@ -76,7 +79,7 @@ class DropdownStyles {
     } else {
       return [
         BoxShadow(
-          color: normalPrimaryBaseColorLight.withValues(alpha: 0.08),
+          color: ThemeColors.primaryText(context).withValues(alpha: 0.08),
           blurRadius: 4,
           offset: const Offset(0, 2),
         ),
@@ -85,23 +88,20 @@ class DropdownStyles {
   }
 
   static Color getIconBackgroundColor({
+    required BuildContext context,
     required bool isFocused,
     required bool isForPrefix,
   }) {
-    if (isForPrefix) {
-      return isFocused 
-          ? normalSecondaryBrandColor.withValues(alpha: 0.1)
-          : lightSecondaryBrandColor.withValues(alpha: 0.1);
-    }
-    return (isFocused ? normalSecondaryBrandColor : lightSecondaryBrandColor)
-        .withValues(alpha: 0.1);
+    final base = isFocused ? normalSecondaryBrandColor : ThemeColors.brandSecondaryMuted(context);
+    return base.withValues(alpha: 0.1);
   }
 
   static Color getIconColor({
+    required BuildContext context,
     required bool isEnabled,
     required bool isFocused,
   }) {
-    if (!isEnabled) return lightSecondaryBaseColorLight;
-    return isFocused ? normalSecondaryBrandColor : normalPrimaryBaseColorLight;
+    if (!isEnabled) return ThemeColors.secondaryText(context);
+    return isFocused ? normalSecondaryBrandColor : ThemeColors.primaryText(context);
   }
 }

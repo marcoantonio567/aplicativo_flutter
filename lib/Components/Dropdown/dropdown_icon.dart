@@ -28,6 +28,7 @@ class DropdownAnimatedIcon extends StatelessWidget {
               padding: DropdownStyles.largeIconPadding,
               decoration: BoxDecoration(
                 color: DropdownStyles.getIconBackgroundColor(
+                  context: context,
                   isFocused: isFocused,
                   isForPrefix: false,
                 ),
@@ -37,6 +38,7 @@ class DropdownAnimatedIcon extends StatelessWidget {
               child: Icon(
                 Icons.keyboard_arrow_down,
                 color: DropdownStyles.getIconColor(
+                  context: context,
                   isEnabled: isEnabled,
                   isFocused: isFocused,
                 ),

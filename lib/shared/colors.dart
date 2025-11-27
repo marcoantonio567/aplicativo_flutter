@@ -73,3 +73,33 @@ const Color ultrathinMaterialColorDark = Color.fromARGB(112, 42, 42, 42);
 
 //Shadow Colors
 //todo: add shadow colors
+
+class ThemeColors {
+  static bool isDark(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark;
+  static Color primaryText(BuildContext context) => isDark(context)
+      ? normalPrimaryBaseColorDark
+      : normalPrimaryBaseColorLight;
+  static Color secondaryText(BuildContext context) => isDark(context)
+      ? lightSecondaryBaseColorDark
+      : lightSecondaryBaseColorLight;
+  static Color mutedText(BuildContext context) => isDark(context)
+      ? normalSecondaryBaseColorDark
+      : normalSecondaryBaseColorLight;
+  static Color surface(BuildContext context) => isDark(context)
+      ? normalTertiaryBaseColorDark
+      : lightTertiaryBaseColorLight;
+  static Color surfaceAlt(BuildContext context) => isDark(context)
+      ? darkTertiaryBaseColorDark
+      : normalTertiaryBaseColorLight;
+  static Color borderNeutral(BuildContext context) => isDark(context)
+      ? normalTertiaryBaseColorDark
+      : normalTertiaryBaseColorLight;
+  static Color brandSecondary(BuildContext context) =>
+      normalSecondaryBrandColor;
+  static Color brandSecondaryMuted(BuildContext context) =>
+      (isDark(context) ? normalSecondaryBrandColor : lightSecondaryBrandColor)
+          .withValues(alpha: 0.1);
+  static Color success(BuildContext context) => normalSuccessSystemColor;
+  static Color error(BuildContext context) => normalErrorSystemColor;
+}

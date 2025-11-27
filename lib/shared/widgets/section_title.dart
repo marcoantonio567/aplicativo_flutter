@@ -15,7 +15,7 @@ class SectionTitle extends StatelessWidget {
     return Text(
       title,
       style: heading5Regular.copyWith(
-        color: lightTertiaryBaseColorLight,
+        color: ThemeColors.primaryText(context),
         fontWeight: FontWeight.w600,
       ),
     );

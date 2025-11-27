@@ -25,7 +25,7 @@ class DropdownMenuItemWidget<T> extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(DropdownStyles.itemBorderRadius),
-          hoverColor: lightSecondaryBrandColor.withValues(alpha: 0.08),
+          hoverColor: ThemeColors.brandSecondary(context).withValues(alpha: 0.08),
           splashColor: normalSecondaryBrandColor.withValues(alpha: 0.12),
           child: Padding(
             padding: DropdownStyles.itemPadding,
@@ -35,7 +35,7 @@ class DropdownMenuItemWidget<T> extends StatelessWidget {
                   Container(
                     padding: DropdownStyles.largeIconPadding,
                     decoration: BoxDecoration(
-                      color: lightSecondaryBrandColor.withValues(alpha: 0.1),
+                      color: ThemeColors.brandSecondaryMuted(context),
                       borderRadius: BorderRadius.circular(DropdownStyles.iconBorderRadius),
                     ),
                     child: item.icon!,
@@ -46,7 +46,7 @@ class DropdownMenuItemWidget<T> extends StatelessWidget {
                   child: Text(
                     item.label,
                     style: paragraph1Regular.copyWith(
-                      color: normalPrimaryBaseColorLight,
+                      color: ThemeColors.primaryText(context),
                       fontWeight: FontWeight.w500,
                     ),
                   ),

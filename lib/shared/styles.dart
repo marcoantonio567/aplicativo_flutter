@@ -18,6 +18,13 @@ const TextStyle heading1Light = TextStyle(
   color: normalPrimaryBaseColorLight,
   letterSpacing: 1.5,
 );
+const TextStyle heading1LightDark = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 93,
+  fontWeight: FontWeight.w300,
+  color: normalPrimaryBaseColorDark,
+  letterSpacing: 1.5,
+);
 
 const TextStyle heading2Light = TextStyle(
   fontFamily: 'Inter',
@@ -25,6 +32,13 @@ const TextStyle heading2Light = TextStyle(
   fontWeight: FontWeight.w300,
   color: normalPrimaryBaseColorLight,
   letterSpacing: 1.5
+);
+const TextStyle heading2LightDark = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 58,
+  fontWeight: FontWeight.w300,
+  color: normalPrimaryBaseColorDark,
+  letterSpacing: 1.5,
 );
 
 const TextStyle heading3Regular = TextStyle(
@@ -34,6 +48,13 @@ const TextStyle heading3Regular = TextStyle(
   color: normalPrimaryBaseColorLight,
   letterSpacing: 1.5
 );
+const TextStyle heading3RegularDark = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 46,
+  fontWeight: FontWeight.w400,
+  color: normalPrimaryBaseColorDark,
+  letterSpacing: 1.5,
+);
 
 const TextStyle heading4Regular = TextStyle(
   fontFamily: 'Inter',
@@ -42,6 +63,13 @@ const TextStyle heading4Regular = TextStyle(
   color: normalPrimaryBaseColorLight,
   letterSpacing: 1.5
 );
+const TextStyle heading4RegularDark = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 33,
+  fontWeight: FontWeight.w400,
+  color: normalPrimaryBaseColorDark,
+  letterSpacing: 1.5,
+);
 
 const TextStyle heading5Regular = TextStyle(
   fontFamily: 'Inter',
@@ -49,6 +77,13 @@ const TextStyle heading5Regular = TextStyle(
   fontWeight: FontWeight.w400,
   color: normalPrimaryBaseColorLight,
   letterSpacing: 1.5
+);
+const TextStyle heading5RegularDark = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 23,
+  fontWeight: FontWeight.w400,
+  color: normalPrimaryBaseColorDark,
+  letterSpacing: 1.5,
 );
 
 const TextStyle subtitle1Regular = TextStyle(
@@ -74,6 +109,13 @@ const TextStyle paragraph1Regular = TextStyle(
   color: normalPrimaryBaseColorLight,
   letterSpacing: 0.5
 );
+const TextStyle paragraph1RegularDark = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 15,
+  fontWeight: FontWeight.w400,
+  color: normalPrimaryBaseColorDark,
+  letterSpacing: 0.5,
+);
 
 const TextStyle paragraph2Medium = TextStyle(
   fontFamily: 'Inter',
@@ -81,6 +123,13 @@ const TextStyle paragraph2Medium = TextStyle(
   fontWeight: FontWeight.w400,
   color: normalPrimaryBaseColorLight,
   letterSpacing: 0.25
+);
+const TextStyle paragraph2MediumDark = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 13,
+  fontWeight: FontWeight.w400,
+  color: normalPrimaryBaseColorDark,
+  letterSpacing: 0.25,
 );
 
 const TextStyle paragraph2Regular = TextStyle(
@@ -90,12 +139,25 @@ const TextStyle paragraph2Regular = TextStyle(
   color: normalPrimaryBaseColorLight,
   letterSpacing: 0.25
 );
+const TextStyle paragraph2RegularDark = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 13,
+  fontWeight: FontWeight.w400,
+  color: normalPrimaryBaseColorDark,
+  letterSpacing: 0.25,
+);
 
 const TextStyle label1Semibold = TextStyle(
   fontFamily: 'Inter',
   fontSize: 15,
   fontWeight: FontWeight.w600,
   color: normalPrimaryBaseColorLight,
+);
+const TextStyle label1SemiboldDark = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 15,
+  fontWeight: FontWeight.w600,
+  color: normalPrimaryBaseColorDark,
 );
 
 const TextStyle label2Regular = TextStyle(
@@ -105,6 +167,13 @@ const TextStyle label2Regular = TextStyle(
   fontWeight: FontWeight.w400,
   color: normalPrimaryBaseColorLight,
 );
+const TextStyle label2RegularDark = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 10,
+  height: 16,
+  fontWeight: FontWeight.w400,
+  color: normalPrimaryBaseColorDark,
+);
 
 const TextStyle label2Semibold = TextStyle(
   fontFamily: 'Inter',
@@ -112,6 +181,13 @@ const TextStyle label2Semibold = TextStyle(
   height: 16,
   fontWeight: FontWeight.w600,
   color: normalPrimaryBaseColorLight,
+);
+const TextStyle label2SemiboldDark = TextStyle(
+  fontFamily: 'Inter',
+  fontSize: 10,
+  height: 16,
+  fontWeight: FontWeight.w600,
+  color: normalPrimaryBaseColorDark,
 );
 
 const TextStyle button1Bold = TextStyle(

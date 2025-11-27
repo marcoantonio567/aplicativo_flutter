@@ -85,7 +85,7 @@ class CustomCard extends StatelessWidget {
             : BorderSide.none,
       ),
       child: Container(
-        decoration: CardStyles.getDecoration(type, size),
+        decoration: CardStyles.getDecoration(context, type, size),
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(CardStyles.getBorderRadius(size)),

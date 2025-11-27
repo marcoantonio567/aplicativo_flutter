@@ -44,7 +44,7 @@ class BottomTabBar extends StatelessWidget {
       items: viewModel.bottomTabs,
       type: BottomNavigationBarType.fixed,
       selectedItemColor: normalSecondaryBrandColor,
-      unselectedItemColor: lightPrimaryBaseColorLight,
+      unselectedItemColor: ThemeColors.secondaryText(context),
       showUnselectedLabels: true,
       currentIndex: currentIndex,
       onTap: viewModel.onIndexChanged,

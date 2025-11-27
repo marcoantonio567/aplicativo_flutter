@@ -74,6 +74,7 @@ class CustomDropdownState<T> extends State<CustomDropdown<T>> with TickerProvide
 
   Color _getBorderColor() {
     return DropdownStyles.getBorderColor(
+      context: context,
       hasError: errorMsg != null,
       isFocused: _isFocused,
       isHovered: _isHovered,
@@ -127,6 +128,7 @@ class CustomDropdownState<T> extends State<CustomDropdown<T>> with TickerProvide
                     width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: DropdownStyles.getContainerGradient(
+                        context: context,
                         isEnabled: widget.viewModel.isEnabled,
                       ),
                       borderRadius: BorderRadius.circular(DropdownStyles.borderRadius),
@@ -135,6 +137,7 @@ class CustomDropdownState<T> extends State<CustomDropdown<T>> with TickerProvide
                         width: _isFocused ? DropdownStyles.focusedBorderWidth : DropdownStyles.normalBorderWidth,
                       ),
                       boxShadow: DropdownStyles.getBoxShadow(
+                        context: context,
                         isHovered: _isHovered,
                         isFocused: _isFocused,
                       ),
@@ -156,7 +159,7 @@ class CustomDropdownState<T> extends State<CustomDropdown<T>> with TickerProvide
                             );
                           }).toList();
                         },
-                        dropdownColor: lightTertiaryBaseColorLight,
+                        dropdownColor: ThemeColors.surface(context),
                         elevation: 12,
                         borderRadius: BorderRadius.circular(DropdownStyles.borderRadius),
                         icon: DropdownAnimatedIcon(

@@ -30,6 +30,11 @@ class NoteDetailViewModel {
     await repository.remove(noteId);
   }
 
+  Future<void> save(String title, String content) async {
+    final updated = await repository.update(noteId, title, content);
+    note.value = updated;
+  }
+
   void dispose() {
     note.dispose();
     isLoading.dispose();

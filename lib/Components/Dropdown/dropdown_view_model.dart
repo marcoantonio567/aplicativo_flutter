@@ -5,7 +5,7 @@ class DropdownItem<T> {
   final String label;
   final Widget? icon;
 
-  DropdownItem({
+  const DropdownItem({
     required this.value,
     required this.label,
     this.icon,

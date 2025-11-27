@@ -8,6 +8,8 @@ import '../../Components/LinkedLabel/linked_label.dart';
 import '../../Components/LinkedLabel/linked_label_view_model.dart';
 import '../../shared/spacing.dart';
 import '../../shared/colors.dart';
+import '../../Components/AppBar/custom_app_bar.dart';
+import '../../Components/AppBar/custom_app_bar_view_model.dart';
 
 class LoginView extends StatefulWidget {
   final LoginViewModel viewModel;
@@ -116,7 +118,9 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
+      appBar: CustomAppBar.instantiate(
+        viewModel: const CustomAppBarViewModel(title: 'Login'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(spaceMd),
         child: Column(

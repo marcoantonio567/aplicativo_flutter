@@ -9,6 +9,8 @@ class NotesListViewModel {
 
   final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
   final ValueNotifier<List<Note>> notes = ValueNotifier<List<Note>>([]);
+  final ValueNotifier<List<Note>> visibleNotes = ValueNotifier<List<Note>>([]);
+  final ValueNotifier<String> query = ValueNotifier<String>('');
   final ValueNotifier<String?> errorMessage = ValueNotifier<String?>(null);
 
   NotesListViewModel({required this.repository, required this.coordinator});
@@ -19,6 +21,7 @@ class NotesListViewModel {
     try {
       final data = await repository.list();
       notes.value = data;
+      _applyFilter();
     } catch (e) {
       errorMessage.value = 'Falha ao carregar notas';
     } finally {
@@ -31,6 +34,7 @@ class NotesListViewModel {
     try {
       final created = await repository.add(title, content);
       notes.value = [created, ...notes.value];
+      _applyFilter();
     } catch (_) {
       errorMessage.value = 'Falha ao adicionar nota';
     } finally {
@@ -42,6 +46,7 @@ class NotesListViewModel {
     try {
       await repository.remove(id);
       notes.value = notes.value.where((n) => n.id != id).toList();
+      _applyFilter();
     } catch (_) {
       errorMessage.value = 'Falha ao remover nota';
     }
@@ -51,12 +56,32 @@ class NotesListViewModel {
     final result = await coordinator.goToNoteDetail(id);
     if (result != null) {
       notes.value = notes.value.where((n) => n.id != result).toList();
+      _applyFilter();
     }
+  }
+
+  void setQuery(String value) {
+    query.value = value;
+    _applyFilter();
+  }
+
+  void _applyFilter() {
+    final q = query.value.trim().toLowerCase();
+    if (q.isEmpty) {
+      visibleNotes.value = List<Note>.from(notes.value);
+      return;
+    }
+    visibleNotes.value = notes.value
+        .where((n) =>
+            n.title.toLowerCase().contains(q) || n.content.toLowerCase().contains(q))
+        .toList();
   }
 
   void dispose() {
     isLoading.dispose();
     notes.dispose();
+    visibleNotes.dispose();
+    query.dispose();
     errorMessage.dispose();
   }
 }

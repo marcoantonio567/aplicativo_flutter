@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import '../../shared/spacing.dart';
 import '../../Components/Buttons/ActionButton/action_button.dart';
 import '../../Components/Buttons/ActionButton/action_button_view_model.dart';
+import '../../Components/InputField/input_text.dart';
+import '../../Components/InputField/input_text_view_model.dart';
 import '../view_model/notes/note_detail_view_model.dart';
+import '../../Components/AppBar/custom_app_bar.dart';
+import '../../Components/AppBar/custom_app_bar_view_model.dart';
 
 class NoteDetailView extends StatefulWidget {
   final NoteDetailViewModel viewModel;
@@ -13,6 +17,8 @@ class NoteDetailView extends StatefulWidget {
 }
 
 class _NoteDetailViewState extends State<NoteDetailView> {
+  final TextEditingController _titleCtrl = TextEditingController();
+  final TextEditingController _contentCtrl = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -28,7 +34,9 @@ class _NoteDetailViewState extends State<NoteDetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Detalhe da Nota')),
+      appBar: CustomAppBar.instantiate(
+        viewModel: const CustomAppBarViewModel(title: 'Detalhe da Nota'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(spaceMd),
         child: ValueListenableBuilder(
@@ -37,19 +45,46 @@ class _NoteDetailViewState extends State<NoteDetailView> {
             if (note == null) {
               return const Center(child: Text('Nota não encontrada'));
             }
+            _titleCtrl.text = note.title;
+            _contentCtrl.text = note.content;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  note.title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                StyledInputField.instantiate(
+                  viewModel: InputTextViewModel(
+                    controller: _titleCtrl,
+                    placeholder: 'Título',
+                    password: false,
+                    prefixIcon: const Icon(Icons.title),
                   ),
                 ),
                 const SizedBox(height: spaceSm),
-                Text(note.content),
+                StyledInputField.instantiate(
+                  viewModel: InputTextViewModel(
+                    controller: _contentCtrl,
+                    placeholder: 'Conteúdo',
+                    password: false,
+                    prefixIcon: const Icon(Icons.notes),
+                  ),
+                ),
                 const SizedBox(height: spaceLg),
+                ActionButton.instantiate(
+                  viewModel: ActionButtonViewModel(
+                    size: ActionButtonSize.medium,
+                    style: ActionButtonStyle.primary,
+                    text: 'Salvar',
+                    onPressed: () async {
+                      await widget.viewModel.save(
+                        _titleCtrl.text,
+                        _contentCtrl.text,
+                      );
+                      widget.viewModel.coordinator.pop<String?>(
+                        widget.viewModel.noteId,
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: spaceSm),
                 ActionButton.instantiate(
                   viewModel: ActionButtonViewModel(
                     size: ActionButtonSize.medium,

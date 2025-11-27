@@ -22,4 +22,24 @@ class AppTheme {
       ),
     );
   }
+
+  static ThemeData get darkTheme {
+    return ThemeData(
+      colorScheme: ColorScheme.fromSeed(seedColor: normalSecondaryBrandColor, brightness: Brightness.dark),
+      useMaterial3: true,
+      fontFamily: 'Inter',
+      textTheme: const TextTheme(
+        headlineLarge: heading1Light,
+        headlineMedium: heading2Light,
+        headlineSmall: heading3Regular,
+        titleLarge: heading4Regular,
+        titleMedium: heading5Regular,
+        bodyLarge: paragraph1Regular,
+        bodyMedium: paragraph2Medium,
+        labelLarge: label1Semibold,
+        labelMedium: label2Semibold,
+        labelSmall: label2Regular,
+      ),
+    );
+  }
 }

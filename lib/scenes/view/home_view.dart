@@ -1,69 +1,79 @@
 import 'package:flutter/material.dart';
-import '../../Components/Banner/custom_banner.dart';
-import '../../Components/NavigationCard/navigation_card.dart';
-import '../../shared/navigation_data.dart';
-import '../../shared/spacing.dart';
+import '../../utils/navigation/app_coordinator.dart';
+import '../../Components/BottomTabBar/bottom_tab_bar.dart';
+import '../view_model/home/home_view_model.dart';
+import '../factory/notes_list_factory.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  final AppCoordinator coordinator;
+  final HomeViewModel viewModel;
+  const HomeView({super.key, required this.coordinator, required this.viewModel});
 
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
-  bool _loading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        setState(() {
-          _loading = false;
-        });
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    final items = NavigationData.items;
+    return ValueListenableBuilder<int>(
+      valueListenable: widget.viewModel.currentIndex,
+      builder: (context, index, _) {
+        final pages = [
+          NotesListFactory.make(coordinator: widget.coordinator),
+          const _ProfileView(),
+          const _SettingsView(),
+        ];
+        return Scaffold(
+          appBar: AppBar(title: const Text('Meu App')),
+          body: pages[index],
+          bottomNavigationBar: BottomTabBar.instantiate(
+            viewModel: widget.viewModel.buildBottomBar(),
+            currentIndex: index,
+          ),
+        );
+      },
+    );
+  }
+}
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(spaceMd),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            PromotionalBanner(
-              title: 'Bem-vindo ao Design System',
-              subtitle: 'Explore os componentes e padrões visuais.',
-              actionText: 'Ver exemplos',
-              onActionPressed: () {},
-              isLoading: _loading,
-            ),
-            CustomBanner(
-              title: 'Informação',
-              subtitle: 'Esta é uma home estática construída com o design system.',
-              type: BannerType.info,
-              isLoading: _loading,
-            ),
-            const SizedBox(height: spaceMd),
-            ...items.map((item) => Padding(
-                  padding: const EdgeInsets.only(bottom: spaceSm),
-                  child: NavigationCard(
-                    title: item.title,
-                    description: item.description,
-                    icon: item.icon,
-                    destination: item.destination,
-                    isLoading: _loading,
-                  ),
-                )),
-          ],
-        ),
+class _ProfileView extends StatelessWidget {
+  const _ProfileView();
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          SizedBox(height: 16),
+          Icon(Icons.person, size: 64),
+          SizedBox(height: 12),
+          Text('Perfil do usuário'),
+        ],
       ),
+    );
+  }
+}
+
+class _SettingsView extends StatelessWidget {
+  const _SettingsView();
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: const [
+        ListTile(
+          leading: Icon(Icons.dark_mode),
+          title: Text('Tema escuro'),
+          subtitle: Text('Em breve'),
+        ),
+        ListTile(
+          leading: Icon(Icons.notifications),
+          title: Text('Notificações'),
+          subtitle: Text('Em breve'),
+        ),
+      ],
     );
   }
 }

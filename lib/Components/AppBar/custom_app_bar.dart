@@ -26,7 +26,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: viewModel.centerTitle,
       title: Text(viewModel.title, style: navbarSmallTitle),
       actions: viewModel.actions,
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       elevation: 0,
       scrolledUnderElevation: 2,
       surfaceTintColor: normalSecondaryBrandColor.withValues(alpha: 0.05),

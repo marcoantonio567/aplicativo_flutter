@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../utils/navigation/app_coordinator.dart';
 import '../../Components/BottomTabBar/bottom_tab_bar.dart';
-import '../view_model/home/home_view_model.dart';
-import '../view_model/app/app_view_model.dart';
-import '../factory/notes_list_factory.dart';
+import 'home_view_model.dart';
+import '../app/app_view_model.dart';
+import '../notes/list/notes_list_factory.dart';
 import '../../Components/AppBar/custom_app_bar.dart';
 import '../../Components/AppBar/custom_app_bar_view_model.dart';
 import '../../Components/NotificationInput/notification_input.dart';

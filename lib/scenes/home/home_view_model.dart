@@ -1,4 +1,4 @@
-import '../../../Components/BottomTabBar/bottom_tab_bar_view_model.dart';
+import '../../Components/BottomTabBar/bottom_tab_bar_view_model.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewModel {

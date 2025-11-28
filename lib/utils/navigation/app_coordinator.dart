@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../scenes/factory/home_factory.dart';
+import '../../scenes/home/home_factory.dart';
 import '../../shared/navigation_helper.dart';
-import '../../scenes/factory/notes_list_factory.dart';
-import '../../scenes/factory/note_detail_factory.dart';
-import '../../scenes/factory/terms_factory.dart';
-import '../../scenes/view_model/app/app_view_model.dart';
+import '../../scenes/notes/list/notes_list_factory.dart';
+import '../../scenes/notes/detail/note_detail_factory.dart';
+import '../../scenes/terms/terms_factory.dart';
+import '../../scenes/app/app_view_model.dart';
 
 /// Coordenador de navegação.
 /// Mantém referência ao `Navigator` e centraliza navegação entre telas.

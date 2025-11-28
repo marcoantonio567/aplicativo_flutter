@@ -7,10 +7,10 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:project_app_flutter/scenes/view/app_view.dart';
+import 'package:project_app_flutter/scenes/app/app_view.dart';
 import 'package:project_app_flutter/utils/navigation/app_coordinator.dart';
-import 'package:project_app_flutter/scenes/view_model/app/app_view_model.dart';
-import 'package:project_app_flutter/scenes/services/settings/app_settings_service.dart';
+import 'package:project_app_flutter/scenes/app/app_view_model.dart';
+import 'package:project_app_flutter/scenes/app/app_settings_service.dart';
 import 'package:project_app_flutter/repository/settings/app_settings_repository.dart';
 
 void main() {

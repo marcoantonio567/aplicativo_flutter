@@ -4,7 +4,7 @@ import '../../shared/navigation_helper.dart';
 import '../../Components/Card/custom_card.dart';
 import '../../Components/Card/card_types.dart';
 import '../../utils/navigation/app_coordinator.dart';
-import '../../scenes/factory/notes_list_factory.dart';
+import '../../scenes/notes/list/notes_list_factory.dart';
 
 class ProfileQuickActions extends StatelessWidget {
   final AppCoordinator coordinator;

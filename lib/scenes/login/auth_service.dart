@@ -1,5 +1,5 @@
-import '../../../model/auth/credentials.dart';
-import '../../../model/auth/login_result.dart';
+import '../../model/auth/credentials.dart';
+import '../../model/auth/login_result.dart';
 
 class AuthService {
   Future<Map<String, dynamic>> fetchLogin({required String user, required String password}) async {

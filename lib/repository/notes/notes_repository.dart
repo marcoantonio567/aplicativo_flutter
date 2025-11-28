@@ -1,5 +1,5 @@
 import '../../model/notes/note.dart';
-import '../../scenes/services/notes/notes_service.dart';
+import '../../scenes/notes/notes_service.dart';
 
 class NotesRepository {
   final NotesService service;

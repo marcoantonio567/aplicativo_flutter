@@ -1,4 +1,4 @@
-import '../../scenes/services/settings/app_settings_service.dart';
+import '../../scenes/app/app_settings_service.dart';
 
 class AppSettingsRepository {
   final AppSettingsService service;

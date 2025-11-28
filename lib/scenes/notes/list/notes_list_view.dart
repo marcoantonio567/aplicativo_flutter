@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../Components/List/custom_list.dart';
-import '../../Components/Buttons/ActionButton/action_button.dart';
-import '../../Components/Buttons/ActionButton/action_button_view_model.dart';
-import '../../Components/InputField/input_text.dart';
-import '../../Components/InputField/input_text_view_model.dart';
-import '../../shared/spacing.dart';
-import '../view_model/notes/notes_list_view_model.dart';
-import '../../Components/AppBar/custom_app_bar.dart';
-import '../../Components/AppBar/custom_app_bar_view_model.dart';
-import '../../Components/EmptyState/empty_state.dart';
-import '../../Components/EmptyState/empty_state_view_model.dart';
-import '../../Components/Banner/custom_banner.dart';
-import '../../Components/Banner/banner_config.dart';
+import '../../../Components/List/custom_list.dart';
+import '../../../Components/Buttons/ActionButton/action_button.dart';
+import '../../../Components/Buttons/ActionButton/action_button_view_model.dart';
+import '../../../Components/InputField/input_text.dart';
+import '../../../Components/InputField/input_text_view_model.dart';
+import '../../../shared/spacing.dart';
+import 'notes_list_view_model.dart';
+import '../../../Components/AppBar/custom_app_bar.dart';
+import '../../../Components/AppBar/custom_app_bar_view_model.dart';
+import '../../../Components/EmptyState/empty_state.dart';
+import '../../../Components/EmptyState/empty_state_view_model.dart';
+import '../../../Components/Banner/custom_banner.dart';
+import '../../../Components/Banner/banner_config.dart';
 
 class NotesListView extends StatefulWidget {
   final NotesListViewModel viewModel;

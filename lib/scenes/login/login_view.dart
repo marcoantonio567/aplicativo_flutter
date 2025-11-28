@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../view_model/auth/login_view_model.dart';
+import 'login_view_model.dart';
 import '../../Components/InputField/input_text.dart';
 import '../../Components/InputField/input_text_view_model.dart';
 import '../../Components/Buttons/ActionButton/action_button.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../repository/settings/app_settings_repository.dart';
+import '../../repository/settings/app_settings_repository.dart';
 
 class AppViewModel {
   final AppSettingsRepository repository;

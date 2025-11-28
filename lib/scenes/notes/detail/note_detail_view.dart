@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../shared/spacing.dart';
-import '../../Components/Buttons/ActionButton/action_button.dart';
-import '../../Components/Buttons/ActionButton/action_button_view_model.dart';
-import '../../Components/InputField/input_text.dart';
-import '../../Components/InputField/input_text_view_model.dart';
-import '../view_model/notes/note_detail_view_model.dart';
-import '../../Components/AppBar/custom_app_bar.dart';
-import '../../Components/AppBar/custom_app_bar_view_model.dart';
+import '../../../shared/spacing.dart';
+import '../../../Components/Buttons/ActionButton/action_button.dart';
+import '../../../Components/Buttons/ActionButton/action_button_view_model.dart';
+import '../../../Components/InputField/input_text.dart';
+import '../../../Components/InputField/input_text_view_model.dart';
+import 'note_detail_view_model.dart';
+import '../../../Components/AppBar/custom_app_bar.dart';
+import '../../../Components/AppBar/custom_app_bar_view_model.dart';
 
 class NoteDetailView extends StatefulWidget {
   final NoteDetailViewModel viewModel;

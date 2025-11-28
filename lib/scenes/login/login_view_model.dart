@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
-import '../../services/auth/auth_service.dart';
-import '../../../utils/navigation/app_coordinator.dart';
+import 'auth_service.dart';
+import '../../utils/navigation/app_coordinator.dart';
 
-/// ViewModel de Login.
-/// Expõe estado observável e coordena a comunicação com o Model/Repository.
 class LoginViewModel {
   final AuthService service;
   final AppCoordinator coordinator;

@@ -1,4 +1,4 @@
-import '../../../model/notes/note.dart';
+import '../../model/notes/note.dart';
 
 class NotesService {
   NotesService._internal();

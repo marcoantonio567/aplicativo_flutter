@@ -1,6 +1,6 @@
 import '../../model/auth/credentials.dart';
 import '../../model/auth/login_result.dart';
-import '../../scenes/services/auth/auth_service.dart';
+import '../../scenes/login/auth_service.dart';
 
 /// Repositório responsável por consolidar acesso a dados de Login.
 /// Aqui poderíamos integrar API remota, cache local, etc.

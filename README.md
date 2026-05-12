@@ -1,62 +1,81 @@
 # project_app_flutter
 
-Aplicação Flutter com arquitetura organizada em camadas, tema claro/escuro, navegação centralizada e exemplos de componentes UI reutilizáveis.
+Flutter application with layered architecture, light/dark theme, centralized navigation, and examples of reusable UI components.
 
-## Visão Geral
-- Entrada da aplicação em `lib/main.dart` (`lib/main.dart:10`).
-- `MaterialApp` configurado em `lib/scenes/view/app_view.dart:23` com tema claro/escuro.
-- Navegação centralizada via `AppCoordinator` em `lib/utils/navigation/app_coordinator.dart:11`.
-- Preferência de modo escuro persistida com `shared_preferences` em `lib/scenes/services/settings/app_settings_service.dart:6`.
+## Overview
+- Application entry in `lib/main.dart` (`lib/main.dart:10`).
 
-## Requisitos
-- Flutter SDK (canal estável)
-- Dart `>=3.8.1` (definido em `pubspec.yaml`)
+- `MaterialApp` configured in `lib/scenes/view/app_view.dart:23` with light/dark theme.
 
-## Como Executar
-- Instalar dependências: `flutter pub get`
-- Rodar em dispositivo/emulador: `flutter run`
-- Analisar o código: `flutter analyze`
-- Rodar testes (se aplicável): `flutter test`
+- Centralized navigation via `AppCoordinator` in `lib/utils/navigation/app_coordinator.dart:11`.
 
-## Estrutura do Projeto
-- `lib/Components`: biblioteca de componentes UI reutilizáveis (botões, inputs, listas, avatares, banners, etc.).
-- `lib/model`: modelos de domínio (`notes`, `auth`).
-- `lib/repository`: interfaces de acesso a dados e regras de persistência (`notes`, `settings`, `auth`).
+- Dark mode preference persisted with `shared_preferences` in `lib/scenes/services/settings/app_settings_service.dart:6`.
+
+## Requirements
+- Flutter SDK (stable channel)
+- Dart `>=3.8.1` (defined in `pubspec.yaml`)
+
+## How to Run
+- Install dependencies: `flutter pub get`
+- Run on device/emulator: `flutter run`
+- Analyze code: `flutter analyze`
+- Run tests (if applicable): `flutter test`
+
+## Project Structure
+- `lib/Components`: library of reusable UI components (buttons, inputs, lists, avatars, banners, etc.).
+
+- `lib/model`: domain models (`notes`, `auth`).
+
+- `lib/repository`: data access interfaces and persistence rules (`notes`, `settings`, `auth`).
+
 - `lib/scenes`
-  - `view`: páginas e telas (Login, Home, Notas, Termos).
-  - `view_model`: lógica de apresentação (MVVM) para cada cena.
-  - `services`: serviços de dados (ex.: `NotesService`, `AppSettingsService`).
-  - `factory`: fábricas para instanciar telas com suas dependências.
-- `lib/shared`: tema, estilos, cores, espaçamentos e utilitários de UI.
-- `lib/utils`: utilidades diversas (ex.: `navigation/AppCoordinator`).
 
-## Fluxo de Inicialização
-- `main()` cria `AppCoordinator` e `AppViewModel`, carrega preferências e inicia a `AppView` (`lib/main.dart:10-16`).
-- `AppView` observa `ThemeMode` e configura `MaterialApp` (`lib/scenes/view/app_view.dart:20-30`).
-- A tela inicial é criada via fábrica de Login (`lib/scenes/factory/login_factory.dart`).
+- `view`: pages and screens (Login, Home, Notes, Terms).
 
-## Tema Claro/Escuro
-- Estado do tema em `AppViewModel` (`lib/scenes/view_model/app/app_view_model.dart:6`).
-- Carregamento e alternância do tema com persistência (`lib/scenes/view_model/app/app_view_model.dart:10-18`).
-- Persistência via `shared_preferences` (`lib/scenes/services/settings/app_settings_service.dart:6-13`).
+- `view_model`: presentation logic (MVVM) for each scene.
 
-## Navegação
-- Coordenador mantém `navigatorKey` e métodos de navegação (`lib/utils/navigation/app_coordinator.dart:12,17-26,29-37,39-47,49-58`).
-- Helpers em `lib/shared/navigation_helper.dart`.
+- `services`: data services (e.g., `NotesService`, `AppSettingsService`).
 
-## Notas e Dados de Exemplo
-- `NotesService` provê uma store em memória para CRUD de notas (`lib/scenes/services/notes/notes_service.dart`).
-- `NotesListView` e `NoteDetailView` demonstram fluxo básico de busca, criação, edição e exclusão.
+- `factory`: factories for instantiating screens with their dependencies.
+
+- `lib/shared`: theme, styles, colors, spacing, and UI utilities.
+
+- `lib/utils`: various utilities (e.g., `navigation/AppCoordinator`).
+
+## Initialization Flow
+- `main()` creates `AppCoordinator` and `AppViewModel`, loads preferences, and initializes the `AppView` (`lib/main.dart:10-16`).
+
+- `AppView` observes `ThemeMode` and configures `MaterialApp` (`lib/scenes/view/app_view.dart:20-30`).
+
+- The initial screen is created via the Login factory (`lib/scenes/factory/login_factory.dart`).
+
+## Light/Dark Theme
+- Theme state in `AppViewModel` (`lib/scenes/view_model/app/app_view_model.dart:6`).
+
+- Theme loading and switching with persistence (`lib/scenes/view_model/app/app_view_model.dart:10-18`).
+
+- Persistence via `shared_preferences` (`lib/scenes/services/settings/app_settings_service.dart:6-13`).
+
+## Navigation
+- Coordinator maintains `navigatorKey` and navigation methods (`lib/utils/navigation/app_coordinator.dart:12,17-26,29-37,39-47,49-58`).
+
+- Helpers in `lib/shared/navigation_helper.dart`.
+
+## Sample Notes and Data
+- `NotesService` provides an in-memory store for note CRUD operations (`lib/scenes/services/notes/notes_service.dart`).
+
+- `NotesListView` and `NoteDetailView` demonstrate basic flow for searching, creating, editing, and deleting.
 
 ## Build
 - Android: `flutter build apk`
-- iOS: `flutter build ios` (macOS e Xcode necessários)
+- iOS: `flutter build ios` (macOS and Xcode required)
 - Web: `flutter build web`
 - Desktop: `flutter build windows` / `flutter build macos` / `flutter build linux`
 
-## Convenções
-- Padrão MVVM nas cenas: `view` + `view_model` + `service/repository` + `factory`.
-- Componentes em `lib/Components` seguem API com `ViewModel` para configuração.
+## Conventions
+- MVVM pattern in scenes: `view` + `view_model` + `service/repository` + `factory`.
 
-## Licença
-- Projeto privado; ajuste conforme necessário.
+- Components in `lib/Components` follow the API with `ViewModel` for configuration.
+
+License
+- Private project; adjustments as needed.
